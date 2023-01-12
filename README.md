@@ -1,14 +1,17 @@
 # Mosaic-Maker
+A PhotoMosaic is a picture created by taking some source picture, dividing it up into rectangular sections, and replacing each section with a small thumbnail image whose color closely approximates the color of the section it replaces. Viewing the PhotoMosaic at low magnification, the individual pixels appear as the source image, while a closer examination reveals that the image is made up of many smaller tile images.
+
+![image](https://user-images.githubusercontent.com/92821191/211985087-72e687fc-b01d-4a3b-abd1-32264111aafb.png)
 
 
 ## Tasks
 
 
-1) Generate a solvable random maze given the length and width as parameters
+1) Implement a k-D tree data structure 
 
-2) Solve the maze in the most efficient way possible
+2) Construct an algorithm to detect if I should replace a certain tile with a more theme matching one
 
-3) Draw the solution to the maze on top of the generated image
+3) Map tiles from source images to tile images
 
 ## Getting Started
 ## Software 
@@ -18,7 +21,7 @@ My implementation was fully in C++ and utilized the cmake platform for build aut
 
 1. Clone the repo:
    ```sh
-   git clone https://github.com/kazshah23/Labryinth-Solver.git
+   git clone https://github.com/kazshah23/Mosaic-Maker.git
    ```
 2. Make the `build` directory :
     ```sh
@@ -41,23 +44,22 @@ My implementation was fully in C++ and utilized the cmake platform for build aut
    make main && ./main
     ```    
 ## Conclusions
-1) To generating the maze, 
-    - First created a function which takes in the length and width as parameters and intialized the maze as a grid, where each wall was set to true
-    - Randomly deleted walls without creating cycles until I cannot delete anymore
-    - See 'src/dsets.cpp' amd 'src/maze.cpp'
+1) Implement a k-D tree data structure 
+    - First searched to find the smallest hyperrectangle that contains the target element
+    - Back traversal to see if any other hyperrectangle could contain a closer point,
   
- 2) To solve the maze,
-    - Utilized Breath First Search (BFS) traversal in order to visit all the cells and keep track of distance from start
-    - Located the cell with the longest distance and searched for the path to that cell
-    - See 'src/maze.cpp'
+ 2) Construct an algorithm to detect if I should replace a certain tile with a more theme matching one
+    - Takes three points: target, currentBest, and potential, and returns whether or not potential is closer to target than currentBest.
+    - Used Euclidean's Distance formula to determine which has a relatively lower distance from the points
   
- 3) To draw the solution the maze
-    - Call solvemaze in order to retrieve the solution to the maze 
-    - Colored each pixel of the path red in order to illustrate a line path to the solution of the maze
+ 3) Map tiles from source images to tile images
+    - Generate a blank PNG
+    - Get the average color from that tile
+    - Find the corresponding image that should be placed at that cell
+    - Add the cell to the PNG and continue
  ## What I learned
- - The logic and applicability of Disjoint Sets
- - Generating images in C++ and drawing over them
- - Breath First Search (BFS) 
+ - Implementation and the application of k-D trees
+ - Logic of implementing Mosaic images
 ## Help
 
 Any advise for common problems or issues.
